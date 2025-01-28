@@ -38,25 +38,6 @@ Given a list of students and their scores (e.g., `List<Student> students` where 
 
 ---
 
-## (BONUS) Lab 3: LinkedLists in Java (Problem Solving)
-
-### 1. Merge Two Sorted Lists
-Given two sorted `LinkedList<Integer>`, write a method that merges them into a single sorted `LinkedList<Integer>` while maintaining the order. Do not use any additional data structures such as an `ArrayList`.
-
-### 2. Remove N-th Element from End
-Given a `LinkedList<Integer>`, write a method that removes the `N`-th element from the end of the list. If `N` is greater than the length of the list, return the list as is. For example, given the list `[1, 2, 3, 4, 5]` and `N = 2`, the resulting list should be `[1, 2, 3, 5]`.
-
-### 3. Reverse the LinkedList
-Write a method to reverse a given `LinkedList<Integer>`. You are not allowed to use additional data structures (like an array). Modify the list in place.
-
-### 4. Detect a Cycle in a LinkedList
-Write a method that detects if a `LinkedList<Integer>` contains a cycle. You can assume that a cycle occurs when a node's `next` points to a previous node in the list. If there is a cycle, return `true`; otherwise, return `false`.
-
-### 5. Intersection of Two LinkedLists
-Given two linked lists, `list1` and `list2`, write a method to find the node where the two lists intersect. The lists may or may not have common elements. If the lists do not intersect, return `null`. If they do intersect, return the intersecting node.
-
----
-
 ## Bonus
 
 ### LinkedList Duplicate Removal
