@@ -1,9 +1,8 @@
 package org.dci;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Main {
 
@@ -26,6 +25,21 @@ public class Main {
 
         ArrayList<Integer> consecutiveNumbers = new ArrayList<>(Arrays.asList(10, 4, 20, 5, 1, 3, 2, 6));
         System.out.println(consecutiveList(consecutiveNumbers));
+
+        String[] frequencyList = {"Kai", "Kai", "Thomas", "Yolo", "Whatever", "Yolo"};
+        System.out.println(countFrequency(List.of(frequencyList)));
+
+        HashMap<String, Integer> list1 = new HashMap<String, Integer>(
+                Map.of("Kai", 1, "Peter", 1, "Heiner", 5, "Omar" , 5));
+        HashMap<String, Integer> list2 = new HashMap<String, Integer>(
+                Map.of("Kai", 1,  "Omar" , 2));
+
+        System.out.println(mergeMaps(list1, list2));
+
+
+        HashMap<String, Integer> list3 = new HashMap<String, Integer>(
+                Map.of("Kai", 1, "Peter", 2, "Heiner", 5, "Omar" , 5));
+        maxValueKey(list3);
 
     }
 
@@ -89,5 +103,64 @@ public class Main {
 
         return result;
     }
+
+    public static HashMap<String, Integer> countFrequency(List<String> list) {
+        HashMap<String, Integer> outputMap = new HashMap<>();
+
+            for(int j = 0; j < list.size(); j++) {
+                if(!outputMap.containsKey(list.get(j))) {
+                    outputMap.put(list.get(j), 1);
+                } else{
+                    outputMap.put(list.get(j), outputMap.get(list.get(j)) + 1);
+                }
+            }
+
+        return  outputMap;
+    }
+
+    public static HashMap<String, Integer> mergeMaps(HashMap<String, Integer> input1, HashMap<String, Integer> input2) {
+
+        for(Map.Entry<String, Integer> entry : input2.entrySet()) {
+            String key = entry.getKey();
+            Integer value = entry.getValue();
+
+            if(!input1.containsKey(key)) {
+                input1.put(key, value);
+            } else {
+                input1.put(key, input1.get(key) + value);
+            }
+
+        }
+
+        return input1;
+    }
+
+    public static void maxValueKey(HashMap<String, Integer> list) {
+        Map<String, Integer> input = new HashMap<>(list);
+        System.out.println("Input List: ");
+        System.out.println(list);
+        Map<String, Integer> output =
+                list.entrySet().stream().sorted(Map.Entry.comparingByValue()).collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        Map.Entry::getValue,
+                        (oldValue, newValue) -> oldValue, LinkedHashMap::new));
+        System.out.println("Sorted map: ");
+        System.out.println(output);
+
+        Map.Entry<String, Integer> lastElement =
+                output.entrySet().stream().skip(output.size()-1).findFirst().orElseThrow();
+        System.out.println("Last Element");
+        System.out.println(lastElement);
+
+        for(Map.Entry<String, Integer> entry : input.entrySet()) {
+            if(entry.getValue() == lastElement.getValue()) {
+                System.out.println("Highest Value Entry: ");
+                System.out.println(entry);
+                return;
+            }
+        }
+    }
+
+
 
 }
